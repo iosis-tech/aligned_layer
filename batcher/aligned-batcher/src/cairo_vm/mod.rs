@@ -1,4 +1,6 @@
 use cairovm_verifier_stark::types::StarkProof;
+use starknet_crypto::Felt;
+
 
 const SECURITY_BITS: Felt = Felt::from_hex_unchecked("0x32");
 

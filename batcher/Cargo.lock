@@ -116,6 +116,7 @@ dependencies = [
  "serde_yaml",
  "sha3",
  "sp1-sdk",
+ "starknet-crypto",
  "tokio",
  "tokio-tungstenite 0.21.0",
 ]
