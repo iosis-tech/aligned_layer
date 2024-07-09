@@ -1,6 +1,4 @@
 use crate::gnark::verify_gnark;
-use crate::halo2::ipa::verify_halo2_ipa;
-use crate::halo2::kzg::verify_halo2_kzg;
 use crate::risc_zero::verify_risc_zero_proof;
 use crate::sp1::verify_sp1_proof;
 use aligned_sdk::types::{ProvingSystemId, VerificationData};
@@ -15,34 +13,7 @@ pub(crate) fn verify(verification_data: &VerificationData) -> bool {
             warn!("Trying to verify SP1 proof but ELF was not provided. Returning false");
             false
         }
-        ProvingSystemId::Halo2KZG => {
-            let vk = verification_data
-                .verification_key
-                .as_ref()
-                .expect("Verification key is required");
-
-            let pub_input = verification_data
-                .pub_input
-                .as_ref()
-                .expect("Public input is required");
-            let is_valid = verify_halo2_kzg(&verification_data.proof, pub_input, vk);
-            debug!("Halo2-KZG proof is valid: {}", is_valid);
-            is_valid
-        }
-        ProvingSystemId::Halo2IPA => {
-            let vk = verification_data
-                .verification_key
-                .as_ref()
-                .expect("Verification key is required");
-
-            let pub_input = verification_data
-                .pub_input
-                .as_ref()
-                .expect("Public input is required");
-            let is_valid = verify_halo2_ipa(&verification_data.proof, pub_input, vk);
-            debug!("Halo2-IPA proof is valid: {}", is_valid);
-            is_valid
-        }
+        
         ProvingSystemId::Risc0 => {
             if let Some(image_id_slice) = &verification_data.vm_program_code {
                 let mut image_id = [0u8; 32];
@@ -73,5 +44,7 @@ pub(crate) fn verify(verification_data: &VerificationData) -> bool {
             debug!("Gnark proof is valid: {}", is_valid);
             is_valid
         }
+        ProvingSystemId::Halo2KZG => todo!(),
+        ProvingSystemId::Halo2IPA => todo!(),
     }
 }

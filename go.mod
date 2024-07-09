@@ -11,10 +11,8 @@ require (
 )
 
 require (
-	github.com/aws/aws-sdk-go v1.53.7
 	github.com/consensys/gnark v0.10.0
 	github.com/consensys/gnark-crypto v0.12.2-0.20240215234832-d72fcb379d3e
-	github.com/joho/godotenv v1.5.1
 )
 
 require (
@@ -47,7 +45,6 @@ require (
 	github.com/holiman/uint256 v1.2.4 // indirect
 	github.com/ingonyama-zk/icicle v0.0.0-20230928131117-97f0079e5c71 // indirect
 	github.com/ingonyama-zk/iciclegnark v0.1.0 // indirect
-	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/klauspost/compress v1.17.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect

@@ -35,14 +35,13 @@ use crate::eth::AlignedLayerServiceManager;
 mod config;
 mod eth;
 pub mod gnark;
-pub mod halo2;
 pub mod risc_zero;
 pub mod s3;
 pub mod sp1;
 pub mod types;
 mod zk_utils;
 
-const S3_BUCKET_NAME: &str = "storage.alignedlayer.com";
+const S3_BUCKET_NAME: &str = "test.alignedlayer.com";
 
 pub struct Batcher {
     s3_client: S3Client,

@@ -1,0 +1,13 @@
+[package]
+name = "cairo_vm_verifier_ffi"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cairovm_verifier_stark = { git = "https://github.com/iosis-tech/cairovm-verifier" }
+starknet-crypto = "0.7.1"
+bincode = "1.3.3"
+lazy_static = "1.4.0"
+
+[lib]
+crate-type = ["cdylib", "staticlib", "lib"]
