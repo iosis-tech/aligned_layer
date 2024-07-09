@@ -36,6 +36,7 @@ mod config;
 mod eth;
 pub mod gnark;
 pub mod risc_zero;
+pub mod cairo_vm;
 pub mod s3;
 pub mod sp1;
 pub mod types;
