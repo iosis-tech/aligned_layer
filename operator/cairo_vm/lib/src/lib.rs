@@ -30,11 +30,13 @@ pub unsafe extern "C" fn verify_cairo_vm_proof_ffi(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::fs::File;
 
     const PROOF: &[u8] =
-        include_bytes!("../../../../scripts/test_files/cairo_vm/recursive_layout/proof.proof");
-    const PROGRAM_HASH: &[u8] =
-        include_bytes!("../../../../scripts/test_files/cairo_vm/recursive_layout/program.bin");
+        include_bytes!("../../../../scripts/test_files/cairo_vm/fibonacci_proof_generator/recursive/cairo0_example_proof.json");
+    const PROGRAM_HASH: &[u8] = include_bytes!(
+        "../../../../scripts/test_files/cairo_vm/fibonacci_proof_generator/cairo0_fibonacci.json"
+    );
 
     #[test]
     fn verify_cairo_vm_proof_with_program_hash_works() {
