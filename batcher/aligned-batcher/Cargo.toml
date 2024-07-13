@@ -34,5 +34,5 @@ halo2_proofs = { git = "https://github.com/yetanotherco/yet-another-halo2-fork.g
 lazy_static = "1.4.0"
 bincode = "1.3.3"
 aligned-sdk = { path = "../aligned-sdk" }
-cairovm_verifier_stark = { git = "https://github.com/iosis-tech/cairovm-verifier" }
-cairovm_verifier_air = { git = "https://github.com/iosis-tech/cairovm-verifier" }
+cairovm_verifier_stark = { git = "https://github.com/iosis-tech/cairovm-verifier", branch = "finalize-stark" }
+cairovm_verifier_air = { git = "https://github.com/iosis-tech/cairovm-verifier", branch = "finalize-stark" }

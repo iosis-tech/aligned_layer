@@ -2,6 +2,7 @@ use log::{debug, warn};
 
 use aligned_sdk::types::{ProvingSystemId, VerificationData};
 
+use crate::cairo_vm::verify_cairo_vm_proof;
 use crate::gnark::verify_gnark;
 use crate::risc_zero::verify_risc_zero_proof;
 use crate::sp1::verify_sp1_proof;
@@ -15,7 +16,6 @@ pub(crate) fn verify(verification_data: &VerificationData) -> bool {
             warn!("Trying to verify SP1 proof but ELF was not provided. Returning false");
             false
         }
-        
         ProvingSystemId::Risc0 => {
             if let (Some(image_id_slice), Some(pub_input)) = (
                 &verification_data.vm_program_code,
@@ -31,6 +31,21 @@ pub(crate) fn verify(verification_data: &VerificationData) -> bool {
             }
 
             warn!("Trying to verify Risc0 proof but image id or public input was not provided. Returning false");
+            false
+        }
+        ProvingSystemId::Cairo => {
+            if let (Some(vm_program_code), proof, Some(pub_input)) = (
+                &verification_data.vm_program_code,
+                &verification_data.proof,
+                &verification_data.pub_input,
+            ) {
+                let mut program_hash = [0u8; 32];
+                program_hash.copy_from_slice(vm_program_code.as_slice());
+                let mut public_input = [0u8; 32];
+                public_input.copy_from_slice(pub_input.as_slice());
+                return verify_cairo_vm_proof(proof.as_slice(), &program_hash, &public_input);
+            }
+            warn!("Trying to verify Cairo VM Proof. Returning false");
             false
         }
         ProvingSystemId::GnarkPlonkBls12_381
