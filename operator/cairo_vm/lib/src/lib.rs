@@ -1,3 +1,4 @@
+use cairovm_verifier_air::layout::recursive::RecursiveLayout;
 use cairovm_verifier_stark::types::StarkProof;
 use starknet_crypto::Felt;
 
@@ -20,7 +21,9 @@ pub unsafe extern "C" fn verify_cairo_vm_proof_ffi(
         unsafe { std::slice::from_raw_parts(program_hash, program_hash_len as usize) };
 
     if let Ok(stark_proof) = bincode::deserialize::<StarkProof>(proof_bytes) {
-        let verified_program_hash = stark_proof.verify(SECURITY_BITS).unwrap();
+        let verified_program_hash = stark_proof
+            .verify::<RecursiveLayout>(SECURITY_BITS)
+            .unwrap();
         assert_eq!(verified_program_hash.to_bytes_be(), expected_program_hash);
         return true;
     }
