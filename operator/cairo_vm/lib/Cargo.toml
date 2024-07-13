@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-cairovm_verifier_stark = { git = "https://github.com/iosis-tech/cairovm-verifier" }
-cairovm_verifier_air = { git = "https://github.com/iosis-tech/cairovm-verifier" }
+cairovm_verifier_stark = { git = "https://github.com/iosis-tech/cairovm-verifier", branch = "finalize-stark" }
+cairovm_verifier_air = { git = "https://github.com/iosis-tech/cairovm-verifier", branch = "finalize-stark" }
+cairo-proof-parser = { git = "https://github.com/rkdud007/cairo-proof-parser.git" }
 starknet-crypto = "0.7.1"
 bincode = "1.3.3"
 lazy_static = "1.4.0"
